@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Study Tracker</span>
+        <span class="navbar-text">
+            Sesi terakhir login: {{ last_login }}
+        </span>
+        <a href="{% url 'study_tracker:logout' %}">
+            <button class="btn btn-outline-danger me-2" type="button">Logout</button>
+        </a>
+    </div>
+</nav>
+
+<h5>Nama: </h5>
+<p>{{name}}</p>
+
+<table>
+    <tr>
+        <th>Nama</th>
+        <th>Subjek</th>
+        <th>Tanggal</th>
+        <th>Progres</th>
+        <th>Deskripsi</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for assignment in list_of_assignments %}
+    <tr>
+        <td>{{assignment.name}}</td>
+        <td>{{assignment.subject}}</td>
+        <td>{{assignment.date}}</td>
+        <td>{{assignment.progress}}</td>
+        <td>{{assignment.description}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</table>
+
+<br>
+<a href="{% url 'study_tracker:create_assignment' %}">
+    <button>
+        Tugas Baru
+    </button>
+</a>
+
+<br><br>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+<a href="{% url 'study_tracker:logout' %}">
+    <button>
+        Logout
+    </button>
+</a>
+
+
+{% endblock content %}
